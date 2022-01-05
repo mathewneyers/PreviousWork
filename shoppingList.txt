@@ -2,3 +2,6 @@ Milk
 Butter
 Eggs
 Salad
+Cookies
+Cake
+Ice Cream
