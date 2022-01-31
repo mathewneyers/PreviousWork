@@ -4,24 +4,36 @@
 import random
 import string
 
-def random_password(length, allowLower, allowUpper, allowNumbers, allowGrammer):
-    lower = string.ascii_lowercase
-    upper = string.ascii_uppercase
+def random_password(length, allowLetters, allowNumbers, allowGrammer):
+    letters = string.ascii_letters
     numbers = string.digits
     grammer = string.punctuation
     password = ""
     allowedCharacters = ""
-    if allowLower == 1 and allowUpper == 1 and allowNumbers == 1 and allowGrammer == 1:
-        allowedCharacters = lower + upper + numbers + grammer
-    
+    #Check to see what characters will be allowed in the password
+    if allowLetters == 1 and allowNumbers == 1 and allowGrammer == 1:
+        allowedCharacters = letters + numbers + grammer
+    elif allowLetters == 1 and allowNumbers == 1 and allowGrammer != 1:
+        allowedCharacters = letters + numbers
+    elif allowLetters == 1 and allowNumbers != 1 and allowGrammer != 1:
+        allowedCharacters = letters
+    elif allowLetters == 1 and allowNumbers != 1 and allowGrammer == 1:
+        allowedCharacters = letters + grammer
+    elif allowLetters != 1 and allowNumbers == 1 and allowGrammer == 1:    
+        allowedCharacters = numbers + grammer
+    elif allowLetters != 1 and allowNumbers != 1 and allowGrammer == 1:
+        allowedCharacters = grammer
+    elif allowLetters != 1 and allowNumbers == 1 and allowGrammer != 1:
+        allowedCharacters = numbers
+    else:
+        print("Sorry, can't make a password from nothing!")
     for x in range(length):
         password += "".join(random.choice(allowedCharacters))
     print("The random password of length", length, "is:", password)
 
     
 length = int(input("Enter the length of your password: "))
-allowLower = int(input("Enter 1 if you want to allow lowercase letters in the password: "))
-allowUpper = int(input("Enter 1 if you want to allow uppercase letters in the password: "))
+allowLetters = int(input("Enter 1 if you want to allow lowercase and uppercase letters in the password: "))
 allowNumbers = int(input("Enter 1 if you want to allow numbers in the password: "))
 allowGrammer = int(input("Enter 1 if you want to allow grammer symbols in the password: "))
-random_password(length, allowLower, allowUpper, allowNumbers, allowGrammer)
+random_password(length, allowLetters, allowNumbers, allowGrammer)
