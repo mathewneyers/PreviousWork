@@ -49,9 +49,43 @@ def install_apache2(address):
     child.expect(".*\$")
     child.sendline("exit")
 
+#Install MariaDB
+def install_maria(address):
+    child = pexpect.spawn("ssh justincase@" + address)
+    child.expect(".*:")
+    child.sendline("Password01")
+    child.expect(".*\$")
+    child.sendline("sudo apt update")
+    child.expect(".*:")
+    child.sendline("Password01")
+    child.expect(".*\$")
+    child.sendline("sudo apt install mariadb-server")
+    child.expect(".*\]")
+    child.sendline("y")
+    child.expect(".*\$")
+    child.sendline("sudo mysql_secure_installation")
+    child.expect(".*:")
+    child.sendline("none")
+    child.expect(".*\]")
+    child.sendline("n")
+    child.expect(".*\]")
+    child.sendline("n")
+    child.expect(".*\]")
+    child.sendline("n")
+    child.expect(".*\]")
+    child.sendline("n")
+    child.expect(".*\]")
+    child.sendline("n")
+    child.expect(".*\$")
+    child.sendline("exit")
+
 ip_addresses = [ "192.168.0.111", "192.168.0.112", "192.168.0.121", "192.168.0.122"]
 for ip_address in ip_addresses:
     create_user(ip_address)
 apache2Install = [ "192.168.0.111", "192.168.0.112" ]
 for ip_addr in apache2Install:
     install_apache2(ip_addr)
+dbInstall = [ "192.168.0.121", "192.168.0.122"]
+for ip in dbInstall:
+    install_maria(ip)
+    #new line here
