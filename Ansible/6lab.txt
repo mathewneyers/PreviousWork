@@ -1,0 +1,7 @@
+cd IT385
+cd Ansible
+sudo apt install whois
+Password01
+mkpasswd --method=sha-512
+Password01 #password to be encrypted, then copied and pasted to password for new user
+ansible -i inventory.txt linux -m ansible.builtin.user -a 'name=Mat password=*line 6 (Password01)*
