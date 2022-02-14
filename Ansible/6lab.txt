@@ -5,8 +5,7 @@ Password01
 mkpasswd --method=sha-512
 Password01 #password to be encrypted, then copied and pasted to password for new user
 ansible -i inventory.txt linux -m ansible.builtin.user -a "name=Mat password=*line 6 (Password01)*"
-ansible -i inventory.txt linux -m ansible.builtin.apt -a "name=apt state=latest"
-ansible -i inventory.txt web -m ansible.builtin.yum -a "name=apache2 state=latest" -b -K
-ansible -i inventory.txt web -m ansible.builtin.yum -a "name=apache2 enabled=yes"
-ansible -i inventory.txt db -m ansible.builtin.yum -a "name=mariadb state=latest" -b -K
-ansible -i inventory.txt db -m ansible.builtin.yum -a "name=mariadb enabled=yes"
+ansible -i inventory.txt web -m ansible.builtin.apt -a "name=apache2 state=present update_cache=yes" -b
+ansible -i inventory.txt web -m ansible.builtin.service -a "name=apache2 state=started= enabled=yes"
+ansible -i inventory.txt db -m ansible.builtin.apt -a "name=mariadb state=present update_cache=yes" -b
+ansible -i inventory.txt db -m ansible.builtin.service -a "name=mariadb state=started enabled=yes"
