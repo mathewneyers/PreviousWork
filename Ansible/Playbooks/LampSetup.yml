@@ -1,0 +1,12 @@
+---
+- name: Setup LAMP Stack
+  hosts: linux
+  tasks:
+    - name: Create user "Mat"
+      ansible.builtin.user:
+        name: Mat
+        
+#  - name: Install Apache2 and auto run
+#  ansible.builtin.apt:
+#    name: apache2
+#    state: present
