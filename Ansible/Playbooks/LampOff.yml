@@ -1,0 +1,18 @@
+---
+- name: LAMP uninstall
+  hosts: web
+  tasks:
+    - name: Uninstall Apache2
+      become: yes
+      ansible.builtin.apt:
+        name: apache2
+        state: absent
+
+- name: Uninstall MariaDB
+  hosts: db
+  tasks:
+  - name: Uninstall MariaDB-Server
+    become: yes
+    ansible.builtin.apt:
+      name: mariadb-server
+      state: absent
