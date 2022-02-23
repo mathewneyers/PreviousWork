@@ -1,0 +1,16 @@
+---
+- hosts: CSR1
+  gather_facts: no
+  connection: local
+  tasks:
+  - name: Gather running config
+    ios_command:
+      commands:
+      - conf t
+      - hostname IT385-CSR1
+      - int G2
+      - ip addr 20.20.20.20 255.255.255.0
+      - desc test description 2
+      - no shut
+
+    

@@ -1,0 +1,12 @@
+---
+- hosts: CSR1
+  gather_facts: no
+  connection: local
+  tasks:
+  - name: Configure G2
+    ios_config:
+      lines:
+      - ip addr 30.30.30.30 255.255.255.0
+      - description Thrid Description
+      - no shut
+      parents: interface Gigabit2
