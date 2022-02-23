@@ -1,12 +1,24 @@
 ---
+- name: Remove Users
+  hosts: linux
+  tasks:
+  - name: Remove Jacob
+    ansible.builtin.user:
+      name: Jacob
+      state: absent
+  - name: Remove Aldon
+    ansible.builtin.user:
+      name: Aldon
+      state: absent
+      
 - name: LAMP uninstall
   hosts: web
   tasks:
-    - name: Uninstall Apache2
-      become: yes
-      ansible.builtin.apt:
-        name: apache2
-        state: absent
+  - name: Uninstall Apache2
+    become: yes
+    ansible.builtin.apt:
+      name: apache2
+      state: absent
 
 - name: Uninstall MariaDB
   hosts: db
