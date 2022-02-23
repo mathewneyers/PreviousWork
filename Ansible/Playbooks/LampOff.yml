@@ -3,14 +3,16 @@
   hosts: linux
   tasks:
   - name: Remove Jacob
+    become: yes
     ansible.builtin.user:
       name: Jacob
       state: absent
   - name: Remove Aldon
+    become: yes
     ansible.builtin.user:
       name: Aldon
       state: absent
-      
+
 - name: LAMP uninstall
   hosts: web
   tasks:
