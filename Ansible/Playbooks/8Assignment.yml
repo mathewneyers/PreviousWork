@@ -1,6 +1,12 @@
 ---
-- hosts: web
-  - name: Copy Website to Web Servers
-    ansible.builtin.get_url: 
-      url: mathewneyers.wixsite.com/week8assignment
-      dest: /etc/8assignment.conf
+- name: Copy Website to Web Servers
+  hosts: web
+  tasks:
+  - name: Copy Website
+    become: yes
+    ansible.builtin.copy: 
+      remote_src: yes
+      src: file:///home/justincase/Downloads/8Assignment.html
+      dest: /etc/8assignment.html
+      owner: justincase
+      mode: '0644'
