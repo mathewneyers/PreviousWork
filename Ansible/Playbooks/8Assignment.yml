@@ -1,0 +1,6 @@
+---
+- hosts: web
+  - name: Copy Website to Web Servers
+    ansible.builtin.get_url: 
+      url: mathewneyers.wixsite.com/week8assignment
+      dest: /etc/8assignment.conf
